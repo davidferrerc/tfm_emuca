@@ -1,0 +1,10 @@
+docker build --tag nifitfm .
+docker run -p 8080:8080 -d nifitfm
+docker image ls
+docker container ls
+docker stop container
+docker rmi container
+----------------------------------------------------------------------------
+docker ps -a
+docker exec -it <container_id> /bin/bash/
+docker cp <container_id>:/opt/nifi/nifi-1.11.1/conf/flow.xml.gz flow.xml.gz
