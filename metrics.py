@@ -347,12 +347,12 @@ events['FechaEvento'] = pd.to_datetime(events['FechaEvento'])
 events['ClienteEvento'] = events['ClienteEvento'].astype(int)
 events
 
-"""We use six months of behavioral data to predict customers’ first purchase date in the next three months. If there is no purchase, we will predict that too. Let’s assume our cut off date is 1st october 2019 and split the data:"""
+"""We use 12 months of behavioral data to predict customers’ first purchase date in the next 6 months. If there is no purchase, we will predict that too. Let’s assume our cut off date is 1st july 2019 and split the data:"""
 
-tx_6m = events[(events.FechaEvento < '2019-10-01') & (events.FechaEvento >= '2019-04-01')].reset_index(drop=True)
-tx_next = events[(events.FechaEvento >= '2019-10-01') & (events.FechaEvento < '2019-12-31')].reset_index(drop=True)
+tx_6m = events[(events.FechaEvento < '2019-07-01') & (events.FechaEvento >= '2018-06-01')].reset_index(drop=True)
+tx_next = events[(events.FechaEvento >= '2019-07-01') & (events.FechaEvento < '2020-01-01')].reset_index(drop=True)
 
-"""tx_6m represents the six months performance whereas we will use tx_next for the find out the days between the last purchase date in tx_6m and the first one in tx_next."""
+"""tx_6m represents the 12 months performance whereas we will use tx_next for the find out the days between the last purchase date in tx_6m and the first one in tx_next."""
 
 #Also, we will create a dataframe called tx_user to possess a user-level feature set for the prediction model:
 tx_user = pd.DataFrame(tx_6m['ClienteEvento'].unique())
